@@ -60,7 +60,7 @@
 	color: #EB6666;
 }
 
-.display .brackets,
+.display .brackets, 
 .display .percent {
 	color: #26FED7;
 }
@@ -79,8 +79,7 @@
 .keys .key {
 	position: relative;
 	cursor: pointer;
-
-	display: block;
+  display: block;
 	height: 0;
 	padding-top: 100%;
 	background-color: #262933;

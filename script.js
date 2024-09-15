@@ -65,13 +65,13 @@ document.addEventListener("keydown", (e) => {
 
    // Check for "." key to prevent multiple decimal points in the same number
    if (key === ".") {
-     // If the current input is empty, start the number with "0."
+     // If the current input is empty, start the number with "0." (Allows user to start with ".")
     if (input.length === 0) {
       input = "0.";
       displayInput.innerHTML = cleanInput(input);
       return;
     }
-    
+
     // Find the last operator in the input to get the current number
     let lastOperatorIndex = Math.max(input.lastIndexOf("+"), input.lastIndexOf("-"), input.lastIndexOf("*"), input.lastIndexOf("/"));
     let currentNumber = input.slice(lastOperatorIndex + 1); // Get the part of the input after the last operator
@@ -151,7 +151,7 @@ function validateInput(value) {
   let lastInput = input.slice(-1);
   let operators = ["+", "-", "*", "/"];
   
-  // Allow first input to be "+" or "-" (for starting with a positive/negative number)
+  // Allow first input to be "+" or "-" 
   if (input.length === 0 && (value === "+" || value === "-")) {
     return true;
   }
@@ -166,10 +166,11 @@ function validateInput(value) {
     return false;
   }
  
-  // Prevent two operators in a row (like ++ or --), but allow the first "-" or "+"
+  // Prevent two operators in a row 
   if (operators.includes(value) && operators.includes(lastInput)) {
     return false; 
   }
+  
   return true;
 }
 

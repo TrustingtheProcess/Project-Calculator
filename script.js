@@ -180,7 +180,12 @@ function prepareInput(input) {
   for (let i = 0; i < inputArray.length; i++) {
     if (inputArray[i] == "%") {
       inputArray[i] = "/100";
+    
+    // If the next character after % is a number, insert * between % and the number
+    if (!isNaN(inputArray[i + 1]) && inputArray[i + 1] !== " ") {
+      inputArray.splice(i + 1, 0, "*");
     }
+  }  
     // Handle implicit multiplication, where a number is directly followed by (
     if (!isNaN(inputArray[i])  && inputArray[i + 1] == "(") {
       inputArray.splice(i + 1, 0, "*"); 

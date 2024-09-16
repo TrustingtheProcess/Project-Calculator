@@ -43,6 +43,12 @@ for (let key of keys) {
       if (validateInput(value)) {
         input += value;
         displayInput.innerHTML = cleanInput(input);
+
+        // Auto calculate if the value is an operator (but not "=")
+        if (["+", "-", "*", "/"].includes(value)) {
+          let result = operate(prepareInput(input.slice(0, -1)));
+          displayOutput.innerHTML = cleanOutput(result);
+        }
       }
     }
   });
@@ -86,6 +92,13 @@ document.addEventListener("keydown", (e) => {
   if (!isNaN(key) || key === "+" || key === "-" || key ==="*" || key === "/" || key === "%" || key === ".") {
     input += key;
     displayInput.innerHTML = cleanInput(input);
+    
+    // Auto-calculate if the value is an operator (but not "=")
+    if (["+", "-", "*", "/"].includes(key)) {
+      let result = operate(prepareInput(input.slice(0, -1)));  // Slice out the last operator before calculation
+      displayOutput.innerHTML = cleanOutput(result);
+    }
+
   } else if (key === "Backspace" || key === "Delete") { 
     input = input.slice(0, -1);
     displayInput.innerHTML = cleanInput(input);
